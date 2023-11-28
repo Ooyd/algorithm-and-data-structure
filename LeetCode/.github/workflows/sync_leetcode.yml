@@ -1,0 +1,29 @@
+name: Sync LeetCode Solutions
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        
+      - name: Print working directory
+        run: pwd
+
+      - name: List files in the repository
+        run: ls -la
+
+      - name: Sync to algorithm-datastructure repo
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+        with:
+          source-directory: '.' # 원본 리포지토리의 LeetCode 폴더 상대 경로
+          destination-github-username: 'Ooyd'
+          destination-repository-name: 'algorithm-and-data-structure'
+          target-branch: main
+          target-directory: 'LeetCode' # 대상 리포지토리의 경로
