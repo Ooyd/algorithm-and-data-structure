@@ -10,13 +10,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-        
-      - name: Print working directory
-        run: pwd
-
-      - name: List files in the repository
-        run: ls -la
-
+      
       - name: Sync to algorithm-datastructure repo
         uses: cpina/github-action-push-to-another-repository@main
         env:
