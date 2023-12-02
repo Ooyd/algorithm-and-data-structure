@@ -21,6 +21,6 @@ class Solution {
         int leftDepth = maxDepth(root.left);
         int rightDepth = maxDepth(root.right);
         
-        return Math.max(leftDepth, rightDepth) + 1;
+        return Math.max(leftDepth, rightDepth) + 1; // Big O(N) 시간복잡도
     }
 }
