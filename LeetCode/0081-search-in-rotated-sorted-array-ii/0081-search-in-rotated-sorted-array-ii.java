@@ -8,7 +8,9 @@ class Solution {
             if(nums[mid] == target){
                 return true;
             }
-            
+            System.out.println("nums[left]"+nums[left]);
+            System.out.println("nums[mid]"+nums[mid]);
+            System.out.println("nums[right]"+nums[right]);
             if (nums[left] == nums [mid] && nums[mid] == nums[right]){
                 left++;
                 right--;
