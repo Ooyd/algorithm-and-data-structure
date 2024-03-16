@@ -10,14 +10,14 @@ class Solution {
         Map<String, Car> logs = new HashMap<>();
         for(String record : records){
             StringTokenizer st = new StringTokenizer(record);
-            int timeInformation = convertMinute(st.nextToken()); // Corrected method name
+            int timeInformation = convertMinute(st.nextToken());
             String carNumber = st.nextToken();
             String status = st.nextToken();
 
             remainLogs(logs, timeInformation, carNumber, status);
         }
 
-        int defaultMinute = fees[0]; // Corrected variable name
+        int defaultMinute = fees[0]; 
         int defaultFee = fees[1];
         int unitMinute = fees[2];
         int unitFee = fees[3];
