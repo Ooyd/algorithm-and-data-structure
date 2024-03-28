@@ -4,7 +4,7 @@ public class Main{
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
         
-        while(sc.hasNextInt()){
+     
             String A = sc.next();
             String B = sc.next();
             int numA = Integer.parseInt(reverseString(A));
@@ -17,7 +17,7 @@ public class Main{
             } else{
                 System.out.println(0);
             }
-        }
+        
 
         
         
