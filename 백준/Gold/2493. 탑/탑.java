@@ -1,38 +1,38 @@
-import java.util.*;
 import java.io.*;
+import java.util.*;
 
-/**
- *
- */
-public class Main {
-    public static void main(String[] args) throws IOException {
+public class Main{
+    public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int N = Integer.parseInt(br.readLine());
-        Stack<Integer> stack = new Stack<>();
-        int[] heights = new int[N];
-        int[] result = new int[N];
         StringTokenizer st = new StringTokenizer(br.readLine());
+        
+        Stack<Integer> stack = new Stack<>();
+        int[] heights = new int[N]; // 탑의 높이를 저장할 배열
+        int[] receivers = new int[N]; // 각 탑에서 수신한 탑의 번호를 저장할 배열
+        int[] result = new int[N];
 
-        for(int i =0; i<N; i++) {
+        // 탑의 높이를 입력받아 heights 배열에 저장
+        for (int i = 0; i < N; i++) {
             heights[i] = Integer.parseInt(st.nextToken());
         }
-
-        for(int i = 0; i < N; i++) {
-            while(!stack.isEmpty() && heights[stack.peek()] < heights[i]) {
-                stack.pop(); // 현재 탑보다 낮은 탑은 신호를 수신할 수 없으므로 제거
+        
+         // 각 탑을 순회하며, 각 탑에서 발사한 레이저 신호를 수신하는 탑 찾기
+        for (int i = 0; i < N; i++) {
+            while (!stack.isEmpty() && heights[stack.peek()] < heights[i]) {
+                stack.pop();
             }
-
-            if(stack.isEmpty()) {
-                result[i] = 0; // 수신할 탑이 없음
-            } else {
-                result[i] = stack.peek() + 1; // 인덱스는 0부터 시작하므로 +1
-            }
-
-            stack.push(i); // 현재 탑의 인덱스를 스택에 저장
+            receivers[i] = stack.isEmpty() ? 0 : stack.peek() + 1; // 탑의 인덱스는 0부터 시작하므로 +1
+            stack.push(i);
+            result[i] = receivers[i];
         }
-
-        for(int temp: result) {
-            System.out.print(temp + " ");
+        
+        
+        for(int res : result){
+            System.out.print(res + " ");
         }
+        
+        
     }
+
 }
