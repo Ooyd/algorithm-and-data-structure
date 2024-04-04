@@ -41,20 +41,20 @@ public class Main{
         //추월한 차량 대수
         int count = 0;
 
-        //out 리스트를 기준으로 나온 순서 확인하는 로직. 기준은 Out
+        // 출구에서 나온 차량의 순위(1~N)
         for (int i = 0; i < N; i++) {
-            //out 순서에서 i번째 차량
-            String outCar = out.get(i);
-            // out보다 먼저 들어간 in 차량들 확인.
-            for (int j = 0; j < in.indexOf(outCar); j++) {
-                // 입구에서 먼저 들어간 차량이 출구에서 해당 차량보다 늦게 나오면, 추월발생.
-                if (out.indexOf(in.get(j)) > i) {
+            //그보다 나중에 나온 값들과의 비교.
+            for (int j = i + 1; j < N; j++) {
+                // in 리스트에서 out 리스트의 i번째 차량이 j번째 차량보다 뒤에 있으면 추월한것으로판단.
+                if (in.indexOf(out.get(i)) > in.indexOf(out.get(j))) {
                     count++;
-                    break;
+                    break; // 추월한 경우가 확인되면 해당 차량에 대한 검사를 중지합니다.
                 }
             }
         }
-        System.out.println(count);
+
+        System.out.println(count); // 추월한 차량의 수를 출력합니다.
+
     }
 }
 
