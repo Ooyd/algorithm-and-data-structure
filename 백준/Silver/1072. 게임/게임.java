@@ -22,15 +22,17 @@ public class Main {
 
         int x = Integer.parseInt(st.nextToken());
         int y = Integer.parseInt(st.nextToken());
-        long z = (long)  y * 100 / x;
+        long z = (long)y * 100 / x;
 
-        if (z >= 99){
+
+        // 승률이 99랑 100일때는 변화없으니 처리해야함.. 몇번을틀린건지 모르겠음..
+        if (z == 99 || z== 100){
             System.out.println(-1);
             return;
         }
 
         long low = 1;
-        long high = 1000000000;
+        long high = x;
 
         while(low <= high){
             long mid = (low+high) / 2;
