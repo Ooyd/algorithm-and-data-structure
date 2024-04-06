@@ -16,34 +16,35 @@ import java.io.*;
  */
 public class Main {
     public static void main(String[] args) throws IOException {
-        // 입력 처리
+        //입력 처리
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
 
-        long x = Long.parseLong(st.nextToken());
-        long y = Long.parseLong(st.nextToken());
-        long z = 100 * y / x; // 현재 승률을 계산하는 공식 수정
+        int x = Integer.parseInt(st.nextToken());
+        int y = Integer.parseInt(st.nextToken());
+        long z = (long)  y * 100 / x;
 
-        // 승률이 99% 이상이면 더 이상 승률을 올릴 수 없으므로 -1 출력
-        if (z >= 99) {
+        if (z >= 99){
             System.out.println(-1);
             return;
         }
 
         long low = 1;
-        long high = x; // high의 초기 값을 X로 설정하여 무한 루프 방지
+        long high = 1000000000;
 
-        while (low <= high) {
-            long mid = (low + high) / 2;
-            long newZ = 100 * (y + mid) / (x + mid); // 새 승률 계산
+        while(low <= high){
+            long mid = (low+high) / 2;
+            long newZ = (y + mid) * 100 / (x + mid);
 
-            if (newZ > z) {
-                high = mid - 1; // 승률이 변했으므로, 더 낮은 범위를 탐색
+            if(newZ <= z){
+                low = mid + 1;
             } else {
-                low = mid + 1; // 승률이 변하지 않으면, 더 높은 범위를 탐색
+                high = mid - 1;
             }
+
         }
-        System.out.println(low); // 승률이 변하는 최소 게임 횟수 출력
+        System.out.println(low);
+
     }
 }
 
