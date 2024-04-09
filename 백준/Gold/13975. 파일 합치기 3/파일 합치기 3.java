@@ -8,6 +8,7 @@ import java.io.*;
  - 모든 장을 하나의 파일로 합칠 때 필요한 최소 비용을 계산하라.
  2. 개념 및 접근법
  - 우선순위 큐를 사용해 가장 작은 크기의 파일을 합쳐나가는 방식으로 접근해본다.
+ - 양의 정수 K (3 ≤ K ≤ 1,000,000), 하나의 파일 크기는 10000을 초과하지않는다.
  3. 풀이 결과
 
  */
@@ -25,7 +26,7 @@ public class Main {
 
             PriorityQueue<Long> pq = new PriorityQueue<>();
             for(int i =0; i<K;i++){
-                pq.offer(Long.valueOf(Integer.valueOf(st.nextToken())));
+                pq.offer(Long.valueOf(st.nextToken()));
             }
 
             long cost = 0;
