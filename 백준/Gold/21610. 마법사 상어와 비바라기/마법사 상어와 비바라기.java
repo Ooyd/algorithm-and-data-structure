@@ -128,20 +128,18 @@ public class Main {
     }
 
     private static void moveClouds(int d, int s) {
-        ArrayList<Cloud> moveClouds = new ArrayList<>();
         visited = new boolean[N][N];
 
         for(Cloud cloud: clouds){
-            int nx = Math.floorMod(cloud.x + move[d][0] * s, N);
-            int ny = Math.floorMod(cloud.y + move[d][1] * s, N);
-
-            moveClouds.add(new Cloud(nx,ny));
+            int nx = (cloud.x + s * move[d][0]) % N;
+            if(nx < 0) nx += N;
+            int ny = (cloud.y + s * move[d][1]) % N;
+            if(ny < 0) ny += N;
+            cloud.x = nx;
+            cloud.y = ny;
             visited[nx][ny] = true;
         }
-
-        clouds = moveClouds;
     }
-
 
 
 }
