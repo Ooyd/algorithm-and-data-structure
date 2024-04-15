@@ -17,18 +17,18 @@ import java.util.*;
 
 class Main {
     static BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
-    static int[][] a;
+    static int[][] cheeseMap;
     static boolean[][] visited;
     static int[] dy = {-1, 0, 1, 0};
     static int[] dx = {0, 1, 0, -1};
     static int n, m, cnt, cnt2;
-    static ArrayList<Pair> v = new ArrayList<>();
+    static ArrayList<Position> edgeCheeses = new ArrayList<>();
 
 
-    private static class Pair {
+    private static class Position {
         int y, x;
 
-        Pair(int y, int x) {
+        Position(int y, int x) {
             this.y = y;
             this.x = x;
         }
@@ -40,8 +40,8 @@ class Main {
      */
     private static void dfs(int y, int x) {
         visited[y][x] = true;
-        if (a[y][x] == 1) {
-            v.add(new Pair(y, x));
+        if (cheeseMap[y][x] == 1) {
+            edgeCheeses.add(new Position(y, x));
             return;
         }
         for (int i = 0; i < 4; i++) {
@@ -60,12 +60,12 @@ class Main {
         m = Integer.parseInt(st.nextToken());
 
         //맵 초기화
-        a = new int[n][m];
+        cheeseMap  = new int[n][m];
         visited = new boolean[n][m];
         for (int i = 0; i < n; i++) {
             st = new StringTokenizer(input.readLine());
             for (int j = 0; j < m; j++) {
-                a[i][j] = Integer.parseInt(st.nextToken());
+                cheeseMap[i][j] = Integer.parseInt(st.nextToken());
             }
         }
 
@@ -78,28 +78,28 @@ class Main {
                 }
             }
             //녹아져아할 치즈를 제거.
-            v.clear();
+            edgeCheeses.clear();
             dfs(0, 0);
             //녹여야할 치즈를 녹인다. 또한 녹이는 시점에서 치즈가 몇개 녹았는지 확인.
-            for (Pair b : v) {
+            for (Position cheese : edgeCheeses) {
                 cnt2++;
-                a[b.y][b.x] = 0;
+                cheeseMap[cheese.y][cheese.x] = 0;
             }
 
             //치즈가 다 녹았는지 확인
-            boolean flag = false;
+            boolean isEmpty = false;
             for (int i = 0; i < n; i++) {
                 for (int j = 0; j < m; j++) {
-                    if (a[i][j] != 0) flag = true;
+                    if (cheeseMap[i][j] != 0) isEmpty = true;
                 }
             }
             //녹는게 몇번 반복했는지 확인.
             cnt++;
             //치즈가 다 녹았으면 종료
-            if (!flag) break;
+            if (!isEmpty) break;
         }
 
-        System.out.println(cnt + "\n" + cnt2);
-
+        StringBuilder sb = new StringBuilder().append(cnt).append("\n").append(cnt2);
+        System.out.println(sb);
     }
 }
